@@ -9,15 +9,16 @@ class Model {
     }
 
     read() {
-        // const fileData = fs.readFileSync(this.nomeFile, 'utf8');
-        // return JSON.parse(fileData);
+        const fileData = fs.readFileSync(this.nomeFile, 'utf8');
+        return JSON.parse(fileData);
     }
 
     add(item) {
-        // const fileData = this.read();
-        // fileData.push(item);
+        const fileData = this.read();
+        fileData.push(item);
 
-        // fs.writeFileSync(this.nomeFile, JSON.stringify(fileData));
+        fs.writeFileSync(this.nomeFile, JSON.stringify(fileData));
+        return fileData;
     }
 }
 

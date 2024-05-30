@@ -91,4 +91,23 @@ test("L'istanza di model dovrebbe avere il metodo add", () => {
     expect(newInstance.add).toBeInstanceOf(Function);
 });
 // - read dovrebbe ritornare un array
+test("read dovrebbe ritornare un array", () => {
+    const newInstance = new Model('posts');
+    const fileData = newInstance.read();
+
+    expect(Array.isArray(fileData)).toBe(true);
+});
+
 // - add dovrebbe aggiungere un elemento all’array dei dati e ritornare tutta la lista
+test("add dovrebbe aggiungere un elemento all’array dei dati e ritornare tutta la lista", () => {
+    const newInstance = new Model('posts');
+    const fileData = newInstance.read();
+
+    const newData = { title: 'test' };
+    const updatedFileData = newInstance.add(newData);
+
+    const oldLength = fileData.length;
+    const newLength = updatedFileData.length;
+
+    expect(newLength).toBe(oldLength + 1);
+});
