@@ -5,7 +5,12 @@ const posts = require('../posts.js');
 const createSlug = (title, posts) => {
     // Controllo se è presente il titolo o se è del formato giusto
     if (!title || typeof title != 'string') {
-        throw new Error('Il titolo deve essere una stringa');
+        throw new Error('Il titolo è obbligatorio e deve essere una stringa');
+    }
+
+    // Controllo se è presente l'array dei posts o se è del formato giusto
+    if (!posts || !Array.isArray(posts)) {
+        throw new Error('L\'array dei post è obbligatorio e deve essere un array');
     }
 
     // Trasformo la stringa in minuscolo e sostituisco spazi con trattino
@@ -54,3 +59,7 @@ test('createSlug dovrebbe lanciare un errore in caso di titolo non presente o fo
 })
 
 // - createSlug dovrebbe lanciare un errore se manca l'array dei post
+test("createSlug dovrebbe lanciare un errore se manca l'array dei post", () => {
+    expect(() => createSlug("Titolo test")).toThrow(Error);
+    expect(() => createSlug("Titolo test", 10)).toThrow(Error);
+})
