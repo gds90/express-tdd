@@ -1,14 +1,6 @@
 const { test, expect } = require("@jest/globals");
 const posts = require('../posts.js');
-
-// Classe Model
-class Model {
-    nomeFile;
-
-    constructor(nomeFile) {
-        this.nomeFile = `${nomeFile}` + '.json';
-    }
-}
+const { Model } = require('../../models/Model.js')
 
 // Funzione createSlug che crea gli slug dei nostri post ricevendo come argomento il titolo da convertire e la lista di tutti i post
 const createSlug = (title, posts) => {
@@ -88,6 +80,15 @@ test("L'istanza di model dovrebbe richiedere il nome del file json da usare in f
 });
 
 // - L'istanza di model dovrebbe avere il metodo read
+test("L'istanza di model dovrebbe avere il metodo read", () => {
+    const newInstance = new Model('nomeFile');
+    expect(newInstance.read).toBeInstanceOf(Function);
+});
+
 // - L'istanza di model dovrebbe avere il metodo add
+test("L'istanza di model dovrebbe avere il metodo add", () => {
+    const newInstance = new Model('nomeFile');
+    expect(newInstance.add).toBeInstanceOf(Function);
+});
 // - read dovrebbe ritornare un array
 // - add dovrebbe aggiungere un elemento all’array dei dati e ritornare tutta la lista
