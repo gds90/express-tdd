@@ -3,6 +3,11 @@ const posts = require('../posts.js');
 
 // funzione createSlug che crea gli slug dei nostri post ricevendo come argomento il titolo da convertire e la lista di tutti i post
 const createSlug = (title, posts) => {
+    // Controllo se è presente il titolo o se è del formato giusto
+    if (!title || typeof title != 'string') {
+        throw new Error('Il titolo deve essere una stringa');
+    }
+
     // Trasformo la stringa in minuscolo e sostituisco spazi con trattino
     const baseSlug = title.toLowerCase().replace(/\s+/g, '-');
 
@@ -43,5 +48,9 @@ test('createSlug dovrebbe incrementare di 1 lo slug quando esiste già', () => {
 });
 
 // - createSlug dovrebbe lanciare un errore in caso di titolo non presente o formato errato
+test('createSlug dovrebbe lanciare un errore in caso di titolo non presente o formato errato', () => {
+    expect(() => createSlug("", posts)).toThrow(Error);
+    expect(() => createSlug(10, posts)).toThrow(Error);
+})
 
 // - createSlug dovrebbe lanciare un errore se manca l'array dei post
