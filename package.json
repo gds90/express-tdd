@@ -1,0 +1,20 @@
+{
+  "name": "express-tdd",
+  "version": "1.0.0",
+  "description": "Esercizio Impariamo a ragionare in ottica TDD e a scrivere i nostri Unit Tests. Creiamo i test per la nostra funzione createSlug che crea gli slug dei nostri post ricevendo come argomento il titolo da convertire e la lista di tutti i post.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:wath": "jest --watchAll",
+    "dev": "node posts/tests/posts.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
