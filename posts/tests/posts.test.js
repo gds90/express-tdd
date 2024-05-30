@@ -1,7 +1,12 @@
 const { test, expect } = require("@jest/globals");
 const posts = require('../posts.js');
 
-// funzione createSlug che crea gli slug dei nostri post ricevendo come argomento il titolo da convertire e la lista di tutti i post
+// Classe Model
+class Model {
+
+}
+
+// Funzione createSlug che crea gli slug dei nostri post ricevendo come argomento il titolo da convertire e la lista di tutti i post
 const createSlug = (title, posts) => {
     // Controllo se è presente il titolo o se è del formato giusto
     if (!title || typeof title != 'string') {
@@ -56,10 +61,24 @@ test('createSlug dovrebbe incrementare di 1 lo slug quando esiste già', () => {
 test('createSlug dovrebbe lanciare un errore in caso di titolo non presente o formato errato', () => {
     expect(() => createSlug("", posts)).toThrow(Error);
     expect(() => createSlug(10, posts)).toThrow(Error);
-})
+});
 
 // - createSlug dovrebbe lanciare un errore se manca l'array dei post
 test("createSlug dovrebbe lanciare un errore se manca l'array dei post", () => {
     expect(() => createSlug("Titolo test")).toThrow(Error);
     expect(() => createSlug("Titolo test", 10)).toThrow(Error);
-})
+});
+
+// Bonus
+// Creiamo una classe Model la quale dovrà superare i seguenti test:
+// - Model dovrebbe essere una classe (crea un'istanza della classe Model)
+test("Model dovrebbe essere una classe (crea un'istanza della classe Model)", () => {
+    const newInstance = new Model();
+    expect(newInstance).toBeInstanceOf(Model);
+});
+
+// - L'istanza di model dovrebbe richiedere il nome del file json da usare in fase di creazione dell'istanza
+// - L'istanza di model dovrebbe avere il metodo read
+// - L'istanza di model dovrebbe avere il metodo add
+// - read dovrebbe ritornare un array
+// - add dovrebbe aggiungere un elemento all’array dei dati e ritornare tutta la lista
